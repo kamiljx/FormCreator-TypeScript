@@ -21,11 +21,11 @@ class textInput implements Field {
     type: fieldType;
     e: HTMLInputElement;
 
-    constructor(name: string, label: string, type: number){
+    constructor(name: string, label: string){
         this.e = document.createElement('input') as HTMLInputElement
         this.name = name,
         this.label = label,
-        this.type = 1
+        this.e.name = this.name
     }
 
     render(): HTMLElement{
@@ -36,3 +36,16 @@ class textInput implements Field {
     }
 }
 
+class Form {
+    fields: Field[];
+    formElement: HTMLElement;
+constructor(id: string) {
+this.fields = new Array();
+this.formElement = document.getElementById(id);
+}
+    render(): void {
+     // TODO: pętla wyświetlająca kolejne pola
+}
+getValue(): void {
+// TODO: pętla wyświetlająca wartości kolejnych pól
+} }
