@@ -52,12 +52,20 @@ class elearning implements Field {
     labelHTML: HTMLLabelElement;
 
 
-    constructor(name:string, label:string) {
+    constructor(name:string, label:string, ...YoN : string[] ) {
         this.name = name;
         this.type = fieldType.checkBox;
-        this.e = <HTMLInputElement>document.createElement('input');
+        this.e = document.createElement('input') as HTMLInputElement;
         this.e.name = this.name;
-        this.labelHTML = <HTMLLabelElement>document.createElement('label');
+        this.e.type = 'checkbox'
+        // YoN.forEach(e => {
+        //     const check = document.createElement('option');
+        //     check.value = e;
+        //     check.text = e;
+        //     this.e.add(check)
+        // })
+
+        this.labelHTML = document.createElement('label') as HTMLLabelElement;
         this.labelHTML.innerHTML = label;
         this.labelHTML.htmlFor = name;
         this.label = label;
@@ -78,14 +86,20 @@ class studyField implements Field {
     name: string;
     label: string;
     type: fieldType;
-    e: HTMLInputElement;
+    e: HTMLSelectElement;
     labelHTML: HTMLLabelElement;
 
 
-    constructor(name:string, label:string) {
+    constructor(name:string, label:string, ...studyFields: string []) {
         this.name = name;
         this.type = fieldType.select;
-        this.e = <HTMLInputElement>document.createElement('input');
+        this.e = document.createElement('select') as HTMLSelectElement;
+        studyFields.forEach(e =>{
+           const field = document.createElement('option')
+           field.value = e;
+           field.text = e;
+           this.e.add(field);
+        })
         this.e.name = this.name;
         this.labelHTML = <HTMLLabelElement>document.createElement('label');
         this.labelHTML.innerHTML = label;
@@ -108,26 +122,28 @@ class comments implements Field {
     name: string;
     label: string;
     type: fieldType;
-    element: HTMLInputElement;
+    e: HTMLTextAreaElement;
     labelHTML: HTMLLabelElement;
 
 
 
     constructor(name:string, label:string) {
-        this.element = <HTMLInputElement>document.createElement('input');
         this.name = name;
+        this.type = fieldType.textArea;
+        this.e = document.createElement('textarea') as HTMLTextAreaElement;
+        this.e.name = this.name;
+        this.labelHTML = document.createElement('label') as HTMLLabelElement;
+        this.labelHTML.innerHTML = label;
+        this.labelHTML.htmlFor = name;
         this.label = label;
-        this.type= fieldType.textArea;
-        this.element.name =this.name;
-        this.element.type = 'textArea';
 
     }
 
     render(): HTMLElement {
-        return this.element;
+        return this.e;
     }
     getValue(): any {
-        return this.element.value
+        return this.e.value
     }
 
 }
@@ -174,6 +190,7 @@ class Form {
     constructor(id: string, idValue: string) {
         this.fields = new Array();
         this.formElement = document.getElementById(id);
+        //this.elementContent = document.getElementById(idValue)
     }
     render(): void {    
         this.fields.forEach(e => {
@@ -192,7 +209,7 @@ class Form {
         form: Form;
         
         constructor(...e: Field[]) {
-            this.form = new Form ('container', 'answer')
+            this.form = new Form ('getForm', 'answer')
             this.form.fields.push(...e)
         }
         renderApp(){
@@ -203,8 +220,11 @@ class Form {
 
     const textBox = new username('username', 'FIRST NAME & SURNAME')
     const email = new EmailField('email', 'email')
+    const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
+    const com = new comments('comment', 'Please leave a comment below')
+    const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 
      document.getElementById('addForm').addEventListener('click', function(){
-         const renderForm = new pushApp(textBox, email)
+         const renderForm = new pushApp(textBox, email, studyF, com, elear)
          renderForm.renderApp()
      })

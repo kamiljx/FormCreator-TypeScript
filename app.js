@@ -30,10 +30,21 @@ var username = /** @class */ (function () {
 //DO YOU PREFER E-LEARNING
 var elearning = /** @class */ (function () {
     function elearning(name, label) {
+        var YoN = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            YoN[_i - 2] = arguments[_i];
+        }
         this.name = name;
         this.type = fieldType.checkBox;
         this.e = document.createElement('input');
         this.e.name = this.name;
+        this.e.type = 'checkbox';
+        // YoN.forEach(e => {
+        //     const check = document.createElement('option');
+        //     check.value = e;
+        //     check.text = e;
+        //     this.e.add(check)
+        // })
         this.labelHTML = document.createElement('label');
         this.labelHTML.innerHTML = label;
         this.labelHTML.htmlFor = name;
@@ -50,9 +61,20 @@ var elearning = /** @class */ (function () {
 //Field of study 
 var studyField = /** @class */ (function () {
     function studyField(name, label) {
+        var _this = this;
+        var studyFields = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            studyFields[_i - 2] = arguments[_i];
+        }
         this.name = name;
         this.type = fieldType.select;
-        this.e = document.createElement('input');
+        this.e = document.createElement('select');
+        studyFields.forEach(function (e) {
+            var field = document.createElement('option');
+            field.value = e;
+            field.text = e;
+            _this.e.add(field);
+        });
         this.e.name = this.name;
         this.labelHTML = document.createElement('label');
         this.labelHTML.innerHTML = label;
@@ -70,18 +92,20 @@ var studyField = /** @class */ (function () {
 //COMMENTS
 var comments = /** @class */ (function () {
     function comments(name, label) {
-        this.element = document.createElement('input');
         this.name = name;
-        this.label = label;
         this.type = fieldType.textArea;
-        this.element.name = this.name;
-        this.element.type = 'textArea';
+        this.e = document.createElement('textarea');
+        this.e.name = this.name;
+        this.labelHTML = document.createElement('label');
+        this.labelHTML.innerHTML = label;
+        this.labelHTML.htmlFor = name;
+        this.label = label;
     }
     comments.prototype.render = function () {
-        return this.element;
+        return this.e;
     };
     comments.prototype.getValue = function () {
-        return this.element.value;
+        return this.e.value;
     };
     return comments;
 }());
@@ -109,6 +133,7 @@ var Form = /** @class */ (function () {
     function Form(id, idValue) {
         this.fields = new Array();
         this.formElement = document.getElementById(id);
+        //this.elementContent = document.getElementById(idValue)
     }
     Form.prototype.render = function () {
         var _this = this;
@@ -129,7 +154,7 @@ var pushApp = /** @class */ (function () {
         for (var _i = 0; _i < arguments.length; _i++) {
             e[_i] = arguments[_i];
         }
-        this.form = new Form('container', 'answer');
+        this.form = new Form('getForm', 'answer');
         (_a = this.form.fields).push.apply(_a, e);
     }
     pushApp.prototype.renderApp = function () {
@@ -139,7 +164,10 @@ var pushApp = /** @class */ (function () {
 }());
 var textBox = new username('username', 'FIRST NAME & SURNAME');
 var email = new EmailField('email', 'email');
+var studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(');
+var com = new comments('comment', 'Please leave a comment below');
+var elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no');
 document.getElementById('addForm').addEventListener('click', function () {
-    var renderForm = new pushApp(textBox, email);
+    var renderForm = new pushApp(textBox, email, studyF, com, elear);
     renderForm.renderApp();
 });
