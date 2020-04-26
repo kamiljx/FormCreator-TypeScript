@@ -28,36 +28,36 @@ var username = /** @class */ (function () {
     return username;
 }());
 //DO YOU PREFER E-LEARNING
-var elearning = /** @class */ (function () {
-    function elearning(name, label) {
-        var YoN = [];
-        for (var _i = 2; _i < arguments.length; _i++) {
-            YoN[_i - 2] = arguments[_i];
-        }
-        this.name = name;
-        this.type = fieldType.checkBox;
-        this.e = document.createElement('input');
-        this.e.name = this.name;
-        this.e.type = 'checkbox';
-        // YoN.forEach(e => {
-        //     const check = document.createElement('option');
-        //     check.value = e;
-        //     check.text = e;
-        //     this.e.add(check)
-        // })
-        this.labelHTML = document.createElement('label');
-        this.labelHTML.innerHTML = label;
-        this.labelHTML.htmlFor = name;
-        this.label = label;
-    }
-    elearning.prototype.render = function () {
-        return this.e;
-    };
-    elearning.prototype.getValue = function () {
-        return this.e.value;
-    };
-    return elearning;
-}());
+// class elearning implements Field {
+//     name: string;
+//     label: string;
+//     type: fieldType;
+//     e: HTMLInputElement;
+//     labelHTML: HTMLLabelElement;
+//     constructor(name:string, label:string, ...YoN : string[] ) {
+//         this.name = name;
+//         this.type = fieldType.checkBox;
+//         this.e = document.createElement('input') as HTMLInputElement;
+//         this.e.name = this.name;
+//         this.e.type = 'checkbox'
+//         // YoN.forEach(e => {
+//         //     const check = document.createElement('option');
+//         //     check.value = e;
+//         //     check.text = e;
+//         //     this.e.add(check)
+//         // })
+//         this.labelHTML = document.createElement('label') as HTMLLabelElement;
+//         this.labelHTML.innerHTML = label;
+//         this.labelHTML.htmlFor = name;
+//         this.label = label;
+//     }
+//     render(): HTMLElement {
+//         return this.e;
+//     }
+//     getValue(): any {
+//         return this.e.value
+//     }
+// }
 //Field of study 
 var studyField = /** @class */ (function () {
     function studyField(name, label) {
@@ -133,7 +133,8 @@ var Form = /** @class */ (function () {
     function Form(id, idValue) {
         this.fields = new Array();
         this.formElement = document.getElementById(id);
-        //this.elementContent = document.getElementById(idValue)
+        this.elementContent = document.getElementById(idValue);
+        this.cell = document.createElement('cell');
     }
     Form.prototype.render = function () {
         var _this = this;
@@ -143,19 +144,34 @@ var Form = /** @class */ (function () {
         });
     };
     Form.prototype.getValue = function () {
-        // TODO: pętla wyświetlająca wartości kolejnych pól
+        var _this = this;
+        var answer = document.createElement('div');
+        answer.className = "answer";
+        this.elementContent.appendChild(answer);
+        this.cell.className = "cel";
+        this.fields.forEach(function (e) {
+            var tr = document.createElement('tr');
+            tr.innerText = e.label + " " + e.getValue();
+            answer.appendChild(_this.cell);
+            _this.cell.appendChild(tr);
+        });
     };
     return Form;
 }());
 var pushApp = /** @class */ (function () {
     function pushApp() {
         var _a;
+        var _this = this;
         var e = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             e[_i] = arguments[_i];
         }
         this.form = new Form('getForm', 'answer');
         (_a = this.form.fields).push.apply(_a, e);
+        this.submit = document.getElementById('submit');
+        this.submit.addEventListener('click', function () {
+            _this.form.getValue();
+        });
     }
     pushApp.prototype.renderApp = function () {
         this.form.render();
@@ -166,8 +182,10 @@ var textBox = new username('username', 'FIRST NAME & SURNAME');
 var email = new EmailField('email', 'email');
 var studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(');
 var com = new comments('comment', 'Please leave a comment below');
-var elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no');
+//const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 document.getElementById('addForm').addEventListener('click', function () {
-    var renderForm = new pushApp(textBox, email, studyF, com, elear);
+    var getForm = document.getElementById('getForm');
+    getForm.style.height = "250px";
+    var renderForm = new pushApp(textBox, email, studyF, com);
     renderForm.renderApp();
 });

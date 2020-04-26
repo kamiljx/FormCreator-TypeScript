@@ -44,42 +44,42 @@ class username implements Field {
 }
 
 //DO YOU PREFER E-LEARNING
-class elearning implements Field {
-    name: string;
-    label: string;
-    type: fieldType;
-    e: HTMLInputElement;
-    labelHTML: HTMLLabelElement;
+// class elearning implements Field {
+//     name: string;
+//     label: string;
+//     type: fieldType;
+//     e: HTMLInputElement;
+//     labelHTML: HTMLLabelElement;
 
 
-    constructor(name:string, label:string, ...YoN : string[] ) {
-        this.name = name;
-        this.type = fieldType.checkBox;
-        this.e = document.createElement('input') as HTMLInputElement;
-        this.e.name = this.name;
-        this.e.type = 'checkbox'
-        // YoN.forEach(e => {
-        //     const check = document.createElement('option');
-        //     check.value = e;
-        //     check.text = e;
-        //     this.e.add(check)
-        // })
+//     constructor(name:string, label:string, ...YoN : string[] ) {
+//         this.name = name;
+//         this.type = fieldType.checkBox;
+//         this.e = document.createElement('input') as HTMLInputElement;
+//         this.e.name = this.name;
+//         this.e.type = 'checkbox'
+//         // YoN.forEach(e => {
+//         //     const check = document.createElement('option');
+//         //     check.value = e;
+//         //     check.text = e;
+//         //     this.e.add(check)
+//         // })
 
-        this.labelHTML = document.createElement('label') as HTMLLabelElement;
-        this.labelHTML.innerHTML = label;
-        this.labelHTML.htmlFor = name;
-        this.label = label;
+//         this.labelHTML = document.createElement('label') as HTMLLabelElement;
+//         this.labelHTML.innerHTML = label;
+//         this.labelHTML.htmlFor = name;
+//         this.label = label;
 
-    }
+//     }
 
-    render(): HTMLElement {
-        return this.e;
-    }
-    getValue(): any {
-        return this.e.value
-    }
+//     render(): HTMLElement {
+//         return this.e;
+//     }
+//     getValue(): any {
+//         return this.e.value
+//     }
 
-}
+// }
 
 //Field of study 
 class studyField implements Field {
@@ -186,11 +186,13 @@ class Form {
     fields: Field[];
     formElement: HTMLElement;
     elementContent: HTMLElement;
+    cell: HTMLElement
 
     constructor(id: string, idValue: string) {
         this.fields = new Array();
         this.formElement = document.getElementById(id);
-        //this.elementContent = document.getElementById(idValue)
+        this.elementContent = document.getElementById(idValue)
+        this.cell = document.createElement('cell')
     }
     render(): void {    
         this.fields.forEach(e => {
@@ -202,15 +204,32 @@ class Form {
     
     
     getValue(): void {
-        // TODO: pętla wyświetlająca wartości kolejnych pól
+        const answer = document.createElement('div');
+        answer.className = "answer"
+        this.elementContent.appendChild(answer)
+        this.cell.className = "cel"
+        this.fields.forEach(e =>{
+            const tr = document.createElement('tr')
+            tr.innerText = e.label + " " +  e.getValue() 
+            answer.appendChild(this.cell)
+            this.cell.appendChild(tr)
+
+        })
+
     } }
 
     class pushApp{
         form: Form;
-        
+        submit : HTMLElement;
+
         constructor(...e: Field[]) {
             this.form = new Form ('getForm', 'answer')
             this.form.fields.push(...e)
+            this.submit = document.getElementById('submit');
+            this.submit.addEventListener('click', () =>{
+                this.form.getValue()}
+                )
+                        
         }
         renderApp(){
             this.form.render();
@@ -222,9 +241,12 @@ class Form {
     const email = new EmailField('email', 'email')
     const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
     const com = new comments('comment', 'Please leave a comment below')
-    const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
+    //const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 
      document.getElementById('addForm').addEventListener('click', function(){
-         const renderForm = new pushApp(textBox, email, studyF, com, elear)
+         var getForm = document.getElementById('getForm')
+         getForm.style.height = "250px"         
+
+         const renderForm = new pushApp(textBox, email, studyF, com, /*elear*/)
          renderForm.renderApp()
      })
