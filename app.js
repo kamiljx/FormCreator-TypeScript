@@ -158,6 +158,15 @@ var Form = /** @class */ (function () {
     };
     return Form;
 }());
+var createTable = /** @class */ (function () {
+    function createTable(tableID, fields) {
+        this.fields = fields;
+        this.tableID = tableID;
+        var table = document.createElement('table');
+        table.className = 'answerTable';
+    }
+    return createTable;
+}());
 var pushApp = /** @class */ (function () {
     function pushApp() {
         var _a;

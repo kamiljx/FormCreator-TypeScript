@@ -217,6 +217,22 @@ class Form {
         })
 
     } }
+    class createTable {
+        fields: Field[];
+        tableID: number;
+        table: HTMLElement
+        
+        constructor(tableID: number, fields: Field[]){
+            this.fields = fields;
+            this.tableID = tableID;
+
+    
+            const table = document.createElement('table');
+            table.className = 'answerTable'
+            
+
+        }
+    }
 
     class pushApp{
         form: Form;
