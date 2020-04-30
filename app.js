@@ -131,10 +131,10 @@ var EmailField = /** @class */ (function () {
 }());
 var Form = /** @class */ (function () {
     function Form(id, idValue) {
+        this.tableID = 0;
         this.fields = new Array();
         this.formElement = document.getElementById(id);
         this.elementContent = document.getElementById(idValue);
-        this.cell = document.createElement('cell');
     }
     Form.prototype.render = function () {
         var _this = this;
@@ -144,17 +144,21 @@ var Form = /** @class */ (function () {
         });
     };
     Form.prototype.getValue = function () {
-        var _this = this;
-        var answer = document.createElement('div');
-        answer.className = "answer";
-        this.elementContent.appendChild(answer);
-        this.cell.className = "cel";
-        this.fields.forEach(function (e) {
-            var tr = document.createElement('tr');
-            tr.innerText = e.label + " " + e.getValue();
-            answer.appendChild(_this.cell);
-            _this.cell.appendChild(tr);
-        });
+        ///////////// MOVED TO CREATETABLE//////////////
+        // const answer = document.createElement('div');
+        // answer.className = "answer"
+        // this.elementContent.appendChild(answer)
+        // this.cell.className = "cel"
+        // this.fields.forEach(e =>{
+        //     const tr = document.createElement('tr')
+        //     tr.innerText = e.label + " " +  e.getValue() 
+        //     answer.appendChild(this.cell)
+        //     this.cell.appendChild(tr)
+        // })
+        var answer = new createTable(this.tableID, this.fields);
+        this.tableID++;
+        this.elementContent.appendChild(answer.table);
+        this.createTable.push(answer);
     };
     return Form;
 }());
@@ -162,9 +166,25 @@ var createTable = /** @class */ (function () {
     function createTable(tableID, fields) {
         this.fields = fields;
         this.tableID = tableID;
-        var table = document.createElement('table');
-        table.className = 'answerTable';
+        var tableElement = document.createElement('table');
+        tableElement.className = 'answerTable';
+        tableElement.id = tableID;
+        this.table = tableElement;
+        this.getValue();
     }
+    createTable.prototype.getValue = function () {
+        var _this = this;
+        this.fields.forEach(function (e) {
+            var row = document.createElement('tr');
+            var boldCell = document.createElement('th');
+            var cell = document.createElement('td');
+            boldCell.innerHTML = e.label;
+            cell.innerHTML = e.getValue();
+            row.appendChild(boldCell);
+            row.appendChild(cell);
+            _this.table.appendChild(row);
+        });
+    };
     return createTable;
 }());
 var pushApp = /** @class */ (function () {
