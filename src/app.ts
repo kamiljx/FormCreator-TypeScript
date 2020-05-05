@@ -1,10 +1,10 @@
-import username from "./username"
-import comments from './comments'
-import createTable from './createTable';
+import {username} from "./username"
+import {comments} from './comments'
+import {createTable} from './createTable';
 import EmailField from "./email";
 import { Field } from './field';
 import { fieldType } from './fieldType';
-import Form from './form';
+import {Form} from './form';
 import {pushApp} from './pushApp'
 import {studyField} from './studyField'
 

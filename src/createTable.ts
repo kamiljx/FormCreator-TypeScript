@@ -1,6 +1,6 @@
 import { Field } from './field';
 
-export default class createTable {
+export class createTable {
     fields: Field[];
     tableID: number;
     table: HTMLElement

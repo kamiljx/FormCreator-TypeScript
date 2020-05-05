@@ -1,4 +1,4 @@
-import Form from './form'
+import {Form} from './form'
 import { Field } from './field';
 import EmailField from './email'
 

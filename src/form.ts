@@ -1,7 +1,7 @@
 import { Field } from "./field";
-import createTable from "./createTable";
+import {createTable} from "./createTable";
 
-class Form {
+export class Form {
     fields: Field[];
     formElement: HTMLElement;
     elementContent: HTMLElement;
@@ -33,4 +33,3 @@ class Form {
         this.createTable.push(answer)
 
     } }
-    export default Form

@@ -1,14 +1,13 @@
+import { Field } from './field';
 class studyField implements Field {
     name: string;
     label: string;
-    type: fieldType;
     e: HTMLSelectElement;
     labelHTML: HTMLLabelElement;
 
 
     constructor(name:string, label:string, ...studyFields: string []) {
         this.name = name;
-        this.type = fieldType.select;
         this.e = document.createElement('select') as HTMLSelectElement;
         studyFields.forEach(e =>{
            const field = document.createElement('option')

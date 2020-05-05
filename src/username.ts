@@ -1,6 +1,6 @@
 import { Field } from "./field";
 
-class username implements Field {
+export class username implements Field {
     name: string;
     label: string;
     e: HTMLInputElement;
@@ -23,4 +23,3 @@ class username implements Field {
         return this.e.value
     }
 }
-export default {username}

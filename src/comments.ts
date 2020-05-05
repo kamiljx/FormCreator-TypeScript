@@ -1,6 +1,6 @@
 import { Field } from './field';
 
-class comments implements Field {
+export class comments implements Field {
     name: string;
     label: string;
     e: HTMLTextAreaElement;
@@ -27,4 +27,5 @@ class comments implements Field {
     }
 
 }
-export default {comments}
+
+

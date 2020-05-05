@@ -16,7 +16,7 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js'
+    filename: 'bundle.js'
   }
 };
 module.exports = config;
