@@ -1,10 +1,14 @@
 import { Field } from './field';
 
+
 export class createTable {
     fields: Field[];
     tableID: number;
     table: HTMLElement
     deleteCell : HTMLElement
+    editButton: HTMLElement
+    // saveMeBtn: HTMLElement
+
 
     
     constructor(tableID: number, fields: Field[]){
@@ -21,10 +25,21 @@ export class createTable {
         deleteCellButton.className = "delete"
         this.deleteCell = deleteCellButton;
         
-        
+        const editAsnwerButton = document.createElement('button') as HTMLButtonElement
+        editAsnwerButton.innerText = "Edit answer"
+        editAsnwerButton.className = "editAnswer"
+        this.editButton = editAsnwerButton;
+
+        // const saveMeButton = document.createElement('button') as HTMLButtonElement
+        // saveMeButton.innerText = "Save to local storage"
+        // saveMeButton.className = "saveLocalStorage"
+        // this.saveMeBtn = editAsnwerButton;
+
         this.table = tableElement
         this.getTableContent()
+        tableElement.appendChild(editAsnwerButton)
         tableElement.appendChild(deleteCellButton)
+
     }
     getTableContent() : void{
         this.fields.forEach(e =>{
@@ -39,5 +54,6 @@ export class createTable {
             
         })
     }
+
 }
 // export default {createTable}

@@ -3,7 +3,6 @@ import {comments} from './comments'
 import {createTable} from './createTable';
 import EmailField from "./email";
 import { Field } from './field';
-import { fieldType } from './fieldType';
 import {Form} from './form';
 import {pushApp} from './pushApp'
 import {studyField} from './studyField'
@@ -19,4 +18,9 @@ const com = new comments('comment', 'Please leave a comment below')
      getForm.style.height = "250px"         
      const renderForm = new pushApp(textBox, email, studyF, com, /*elear*/)
      renderForm.renderApp()
- })
+
+
+     
+     
+    })
+    
