@@ -1,0 +1,24 @@
+{
+  "name": "formcreator",
+  "version": "1.0.0",
+  "description": "FormCreator - TypeScript WSEI",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamiljx/FormCreator-TypeScript.git"
+  },
+  "author": "Kamil Rzeszutek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kamiljx/FormCreator-TypeScript/issues"
+  },
+  "homepage": "https://github.com/kamiljx/FormCreator-TypeScript#readme",
+  "dependencies": {
+    "@types/node": "^14.0.1",
+    "@types/ws": "^7.2.4",
+    "ws": "^7.3.0"
+  }
+}
