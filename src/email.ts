@@ -1,6 +1,6 @@
 import { Field } from './field';
 
-class EmailField implements Field {
+export class EmailField implements Field {
     name: string;
     label: string;
     e: HTMLInputElement;
@@ -27,4 +27,3 @@ class EmailField implements Field {
     }
 
 }
-export default EmailField

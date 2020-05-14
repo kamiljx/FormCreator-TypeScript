@@ -1,6 +1,6 @@
-let socket = new WebSocket("ws://localhost:8080");
+let socket = new WebSocket("ws://localhost:8080")
 socket.onopen = function(e) {
-  alert("Connected");
+  alert("Connected")
   socket.send("Hello!");
 };
 socket.onmessage = function(event) {

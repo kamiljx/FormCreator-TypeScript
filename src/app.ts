@@ -1,11 +1,12 @@
 import {username} from "./username"
 import {comments} from './comments'
 import {createTable} from './createTable';
-import EmailField from "./email";
+import {EmailField} from "./email";
 import { Field } from './field';
 import {Form} from './form';
 import {pushApp} from './pushApp'
 import {studyField} from './studyField'
+import './styles/styles.scss';
 
 const textBox = new username('username', 'FIRST NAME & SURNAME')
 const email = new EmailField('email', 'email')

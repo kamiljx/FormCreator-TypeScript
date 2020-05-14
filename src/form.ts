@@ -31,5 +31,4 @@ export class Form {
         this.tableID++;
         this.elementContent.appendChild(answer.table)
         this.createTable.push(answer)
-
     } }
