@@ -1,7 +1,6 @@
-$color1 : rgb(189, 140, 140);
-$color2: rgb(143, 133, 90);
 
-@mixin  background {
+body {
+
     background: mix($color1, $color2);
 
 }

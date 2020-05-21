@@ -1,24 +1,16 @@
-@import './background.scss' ;
-@import './input.scss';
-@import './label.scss';
-@import './textarea.scss';
-@import './colour.scss';
-@import './table.scss';
-
-body{
-  @include background;
-};
+@import 'colour.scss';
+// @import 'background.scss' ;
+@import 'input.scss';
+@import 'label.scss';
+@import 'textarea.scss';
+@import 'table.scss';
 
 
-input{
-  @include input
+
+ body{
+   background-image: url(../../assets/puppy_cry.gif);
 }
-textarea {
-  @include textarea;
-}
-label{
-  @include label;
-}
+
 
 #getForm{
   width: 400px;
