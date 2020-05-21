@@ -1,5 +1,34 @@
-@import 'content';
-$body-color: red;
-body {
-  color: $body-color;
+@import './background.scss' ;
+@import './input.scss';
+@import './label.scss';
+@import './textarea.scss';
+@import './colour.scss';
+@import './table.scss';
+
+body{
+  @include background;
+};
+
+
+input{
+  @include input
+}
+textarea {
+  @include textarea;
+}
+label{
+  @include label;
+}
+
+#getForm{
+  width: 400px;
+  text-align: center;
+  align-items: center;
+  height: 0px;
+  position: relative;
+
+
+}
+.answerTable{
+  @include table
 }

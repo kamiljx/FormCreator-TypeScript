@@ -24,10 +24,7 @@ label{
     height: 0px;
     position: relative;
 }
-
-
-  
-  .answerTable {
+.answerTable {
     border: 1px solid ;
     border-color: purple;
     margin-bottom: 10px;
