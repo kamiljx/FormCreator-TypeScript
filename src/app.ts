@@ -1,19 +1,16 @@
 import './styles/styles.scss';
 import {username} from "./username"
 import {comments} from './comments'
-import {createTable} from './createTable';
 import {EmailField} from "./email";
-import { Field } from './field';
-import {Form} from './form';
+import {countryField} from './country'
 import {pushApp} from './pushApp'
 import {studyField} from './studyField'
-import {cityField} from './city'
 
 const textBox = new username('username', 'FIRST NAME & SURNAME')
 const email = new EmailField('email', 'email')
 const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
 const com = new comments('comment', 'Please leave a comment below')
-const country = new cityField('country', 'Select country')
+const country = new countryField('country', 'Select country')
 //const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 
  document.getElementById('addForm').addEventListener('click', function(){

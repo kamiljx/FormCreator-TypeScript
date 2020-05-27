@@ -1,7 +1,7 @@
 import { Field } from './field';
 
 
-export class cityField implements Field {
+export class countryField implements Field {
      name : string;
      label : string;
      e : HTMLSelectElement;
