@@ -9,6 +9,6 @@ socket.on('connection', function connection(ws) {
       console.log('received: %s', message);
     });
   
-    ws.send('something');
+    ws.send('okej');
   });
 server.listen(8080);

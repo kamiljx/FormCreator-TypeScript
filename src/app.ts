@@ -11,6 +11,7 @@ const email = new EmailField('email', 'email')
 const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
 const com = new comments('comment', 'Please leave a comment below')
 const country = new countryField('country', 'Select country')
+
 //const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 
  document.getElementById('addForm').addEventListener('click', function(){

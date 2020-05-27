@@ -2,12 +2,14 @@ import {Form} from './form'
 import { Field } from './field';
 
 
+
 class pushApp{
     form: Form;
     submit : HTMLElement;
     saveMe: HTMLElement;
     getMe: HTMLElement
     clearMe: HTMLElement;
+    sendToServer : HTMLElement;
 
 
     constructor(...e: Field[]) {
@@ -23,7 +25,8 @@ class pushApp{
         this.getMe.addEventListener('click', this.getLocalStorage)
         this.clearMe = document.getElementById('clearLocalStorage');
         this.clearMe.addEventListener('click', this.clearLocalStorage)
-        
+        // this.sendToServer = document.getElementById('sendToServer')
+        // this.sendToServer.addEventListener('click', this.sendMessage)
                     
     }
 
@@ -40,7 +43,9 @@ class pushApp{
         localStorage.setItem('storageMe', storageMe.outerHTML + pastStorage.innerHTML)
         console.log(localStorage)
     }
-
+    // sendMessage () : void{
+    //         socket.send('new message')
+    // }
     getLocalStorage () : void {
         const answerDiv = document.getElementById('answerLocal')
      for (var i = 0; i< localStorage.length; i++){
