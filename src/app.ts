@@ -13,13 +13,13 @@ const textBox = new username('username', 'FIRST NAME & SURNAME')
 const email = new EmailField('email', 'email')
 const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
 const com = new comments('comment', 'Please leave a comment below')
-const city = new cityField('city', 'Select city')
+const country = new cityField('country', 'Select country')
 //const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 
  document.getElementById('addForm').addEventListener('click', function(){
      var getForm = document.getElementById('getForm')
      getForm.style.height = "250px"         
-     const renderForm = new pushApp(textBox, email,city, studyF, com, /*elear*/)
+     const renderForm = new pushApp(textBox, email,country, studyF, com, /*elear*/)
      renderForm.renderApp()
 
 
