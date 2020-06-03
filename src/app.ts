@@ -9,8 +9,8 @@ import {studyField} from './studyField'
 const textBox = new username('username', 'FIRST NAME & SURNAME')
 const email = new EmailField('email', 'email')
 const studyF = new studyField('studyField', 'What field do you study?', 'Law', 'Physics', 'IT technology', 'No one of above:(')
-const com = new comments('comment', 'Please leave a comment below')
-const country = new countryField('country', 'Select country')
+const com = new comments('comment', 'Leave a comment for developer')
+const country = new countryField('country', 'Select country', 'default')
 
 //const elear = new elearning('elearning', 'Do you prefer e-learning?', 'yes', 'no')
 

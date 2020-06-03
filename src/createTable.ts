@@ -64,6 +64,7 @@ export class createTable {
         this.fields.forEach(e => {
             socket.onmessage = function() {
                 console.log(e.getValue())
+
        
             };
         })
