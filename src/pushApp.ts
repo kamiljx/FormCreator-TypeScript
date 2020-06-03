@@ -10,6 +10,7 @@ class pushApp{
     getMe: HTMLElement
     clearMe: HTMLElement;
     sendToServer : HTMLElement;
+    editAnswers : HTMLElement;
 
 
     constructor(...e: Field[]) {
@@ -25,6 +26,7 @@ class pushApp{
         this.getMe.addEventListener('click', this.getLocalStorage)
         this.clearMe = document.getElementById('clearLocalStorage');
         this.clearMe.addEventListener('click', this.clearLocalStorage)
+
         // this.sendToServer = document.getElementById('sendToServer')
         // this.sendToServer.addEventListener('click', this.sendMessage)
                     
@@ -37,6 +39,7 @@ class pushApp{
         localStorage.clear()
     }
     setLocalStorage() : void {
+        localStorage.clear()
         const storageMe = document.getElementById('answer')
         const pastStorage = document.getElementById('answerLocal')
         const myStorage = JSON.stringify(storageMe)
@@ -50,7 +53,7 @@ class pushApp{
         const answerDiv = document.getElementById('answerLocal')
      for (var i = 0; i< localStorage.length; i++){
         const answer = localStorage.storageMe
-        answerDiv.outerHTML += answer
+        answerDiv.innerHTML += answer
      }
     }
 
