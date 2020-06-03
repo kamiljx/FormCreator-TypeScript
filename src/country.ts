@@ -78,7 +78,7 @@ export class countryField implements Field {
     //  }
 
 
-    var cos =returnRegionValue () {
+    returnRegionValue () {
         return this.regEl.value
         console.log("region has been changed")
 
