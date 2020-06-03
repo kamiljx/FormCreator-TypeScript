@@ -19,27 +19,20 @@ export class countryField implements Field {
          this._e = document.createElement('div') as HTMLDivElement 
          this.e = document.createElement('select') as HTMLSelectElement
          this.regEl = document.createElement('select') as HTMLSelectElement
-         this.regEl.setAttribute("id", "RegionValue")
+        //  this.regEl.setAttribute("id", "RegionValue")
+         this.regEl.onchange = () =>{
+             this.returnRegionValue()
+         }
          if(defaultValue)
             this.e.value = defaultValue;
-        this.fetchOptions<{name : string, region: string}>("https://restcountries.eu/rest/v2/all").then((data) => {
-            data.filter(regionX => regionX.region ==  this.returnRegionValue()).
-            map(x => x.name).forEach(e => {
-                
-                
-                let option = document.createElement('option') as HTMLOptionElement;
-                option.text = e;
-                option.value = e;
-                this.e.options.add(option)
-                
-            })
-        })
+       
         this.labelHTML = document.createElement('label') as HTMLLabelElement;
         this.labelHTML.innerHTML = label;
         this.labelHTML.htmlFor = name;
         this.label = label;
 
 
+        let regionOption0 = document.createElement('option') as HTMLOptionElement
         let regionOption1 = document.createElement('option') as HTMLOptionElement
         let regionOption2 = document.createElement('option') as HTMLOptionElement
         let regionOption3 = document.createElement('option') as HTMLOptionElement
@@ -48,6 +41,8 @@ export class countryField implements Field {
         let regionOption6 = document.createElement('option') as HTMLOptionElement
 
 
+        regionOption0.text = 'Select one'
+        regionOption0.value = 'SelectOne'
         regionOption1.text = 'Americas'
         regionOption1.value = 'Americas'
         regionOption2.text = 'Europe'
@@ -61,6 +56,7 @@ export class countryField implements Field {
         regionOption6.text = 'Polar'
         regionOption6.value = 'Polar'
 
+        this.regEl.appendChild(regionOption0 )
         this.regEl.appendChild(regionOption1 )
         this.regEl.appendChild(regionOption2 )
         this.regEl.appendChild(regionOption3 )
@@ -79,11 +75,23 @@ export class countryField implements Field {
 
 
     returnRegionValue () {
-        return this.regEl.value
+        this.e.innerText = null;
+        this.fetchOptions<{name : string, region: string}>("https://restcountries.eu/rest/v2/all").then((data) => {
+            data.filter(regionX => regionX.region ==  this.regEl.value).
+            map(x => x.name).forEach(e => {
+                
+                
+                let option = document.createElement('option') as HTMLOptionElement;
+                option.text = e;
+                option.value = e;
+                this.e.options.add(option)
+                
+            })
+        })
         console.log("region has been changed")
-
         
     }
+    
      fetchOptions<T>(url : string) : Promise<T[]>{
          return fetch(url)
             .then (res => res.json())
