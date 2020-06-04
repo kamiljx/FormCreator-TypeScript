@@ -1,0 +1,11 @@
+@mixin button-light{
+    height: 35px;
+    background-color: rgb(238, 200, 238);
+    color: black;
+    border-radius: 25%;
+}
+@mixin button-dark{
+    height: 60px;
+    color: white;
+    background-color: rgb(72, 83, 117);
+}

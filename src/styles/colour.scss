@@ -1,3 +1,9 @@
-
-    $color1 : rgb(82, 92, 91);
-    $color2: rgb(81, 79, 102);
+$themes : (
+    light: (
+        backgroundColor:  red,
+ 
+    ),
+    dark: (
+        backgroundColor:  blue,
+        )
+)

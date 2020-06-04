@@ -11,6 +11,7 @@ class pushApp{
     clearMe: HTMLElement;
     sendToServer : HTMLElement;
     editAnswers : HTMLElement;
+    theme: HTMLElement
 
 
     constructor(...e: Field[]) {
@@ -22,6 +23,8 @@ class pushApp{
             );
         this.saveMe = document.getElementById('saveLocalStorage');
         this.saveMe.addEventListener('click', this.setLocalStorage)
+        this.theme = document.getElementById('themeSwitch');
+        this.theme.addEventListener('click', this.themeToggle)
         this.getMe = document.getElementById('getLocalStorage');
         this.getMe.addEventListener('click', this.getLocalStorage)
         this.clearMe = document.getElementById('clearLocalStorage');
@@ -96,6 +99,9 @@ class pushApp{
         
         console.log("hello")
         
+    };
+    themeToggle() : void {
+        document.body.classList.toggle('dark-theme')   
     }
     }
 

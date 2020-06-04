@@ -1,16 +1,36 @@
-@import 'colour.scss';
-// @import 'background.scss' ;
-@import 'input.scss';
-@import 'label.scss';
-@import 'textarea.scss';
-@import 'table.scss';
+// @import 'colour.scss';
+//  // @import 'background.scss' ;
+  @import 'input.scss';
+  @import 'label.scss';
+  @import 'textarea.scss';
+  @import 'table.scss';
+  @import 'themify.scss';
+  @import 'button.scss';
+
+ :root{
+   font-size : 15px;
+ }
 
 
-
- body{
-   background-image: url(../../assets/puppy_cry.gif);
-}
-
+ body{  
+  color: rgb(95, 83, 85);
+  background-image: url(../../assets/light.gif);
+  align-items: center;
+  margin-left: 30%;
+  transition: all 0.15s ease-out;
+  button{
+    @include button-light;  
+  }
+   &.dark-theme {
+     color: rgb(192, 225, 238); 
+     background-image: url(../../assets/puppy_cry.gif);
+     margin-left: 5%;
+     button{
+      @include button-dark
+     }
+     
+   }
+  }
 
 #getForm{
   width: 400px;
